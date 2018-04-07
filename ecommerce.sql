@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 06, 2018 at 10:56 PM
+-- Generation Time: Apr 07, 2018 at 02:42 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -21,6 +21,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `ecommerce`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admins`
+--
+
+CREATE TABLE `admins` (
+  `user_id` int(10) NOT NULL,
+  `user_email` varchar(255) NOT NULL,
+  `user_pass` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`user_id`, `user_email`, `user_pass`) VALUES
+(1, 'admin@admin.admin', 'admin'),
+(2, 'admin2@admin.admin', 'admin2');
 
 -- --------------------------------------------------------
 
@@ -43,7 +63,8 @@ INSERT INTO `brands` (`brand_id`, `brand_title`) VALUES
 (3, 'LG'),
 (4, 'Samsung'),
 (5, 'Sony'),
-(6, 'Toshiba');
+(6, 'Toshiba'),
+(7, 'Apple');
 
 -- --------------------------------------------------------
 
@@ -62,7 +83,8 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`p_id`, `ip_add`, `qty`) VALUES
-(8, '::1', 123123);
+(9, '::1', 0),
+(13, '::1', 0);
 
 -- --------------------------------------------------------
 
@@ -85,7 +107,8 @@ INSERT INTO `categories` (`cat_id`, `cat_title`) VALUES
 (3, 'Mobiles'),
 (4, 'Computers'),
 (5, 'iPads'),
-(6, 'iPhones');
+(6, 'iPhones'),
+(10, 'Remotes');
 
 -- --------------------------------------------------------
 
@@ -111,8 +134,8 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`customer_id`, `customer_ip`, `customer_name`, `customer_email`, `customer_pass`, `customer_country`, `customer_city`, `customer_contact`, `customer_address`, `customer_image`) VALUES
-(2, '::1', '1', '1', '', 'Select a country', '', '', '', ''),
-(3, '::1', '1', '1', '', 'Select a country', '', '', '', '');
+(5, '::1', '1', '1', '', 'Select a country', '', '', '', ''),
+(6, '::1', '1', '1', '', 'Select a country', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -136,7 +159,6 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_cat`, `product_brand`, `product_title`, `product_price`, `product_desc`, `product_image`, `product_keywords`) VALUES
-(7, 0, 0, 'samsung camera 222212112', 222, 'nice', '', 'samsung, camera'),
 (8, 2, 4, 'samsung camera 2', 456, 'sdfsdf', 'samscam2.jpg', 'samsung, camera'),
 (9, 3, 6, 'htc mobile', 123, 'blablabla', 'htc.jpg', 'HTC'),
 (13, 3, 1, 'HTC very cool mobile', 545, 'sdfsdfsdfsdf', 'htc.jpg', 'HTC'),
@@ -145,6 +167,12 @@ INSERT INTO `products` (`product_id`, `product_cat`, `product_brand`, `product_t
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admins`
+--
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`user_id`);
 
 --
 -- Indexes for table `brands`
@@ -175,22 +203,28 @@ ALTER TABLE `products`
 --
 
 --
+-- AUTO_INCREMENT for table `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `brand_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `brand_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `cat_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `cat_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `customer_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `products`
