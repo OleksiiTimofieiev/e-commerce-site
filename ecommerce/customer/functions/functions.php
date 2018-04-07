@@ -1,7 +1,6 @@
 <?php
 
-// establish a connection;
-$con = mysqli_connect("localhost", "root", "", "ecommerce");
+$con = mysqli_connect("localhost","root","123456","ecommerce");
 
 function getIp()
 {

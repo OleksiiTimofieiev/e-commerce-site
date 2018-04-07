@@ -1,7 +1,7 @@
 <?php
 
 // establish a connection;
-$con = mysqli_connect("localhost", "root", "", "ecommerce");
+$con = mysqli_connect("localhost","root","123456","ecommerce");
 
 function getIp()
 {
@@ -18,8 +18,17 @@ function getIp()
 
 function cart()
 {
+	// echo "start";
+
+	// echo $_GET['add_cart'];
+	$number = $_POST['number']; //
+
+	// echo $number;
+
 	if (isset($_GET['add_cart']))
 	{
+		// echo "test1";
+
 		global $con;
 
 		$ip = getIp();
@@ -30,19 +39,27 @@ function cart()
 
 		$run_check = mysqli_query($con, $check_pro);
 
+		// echo "test2";
+
 		if (mysqli_num_rows($run_check) > 0)
 		{
+			// echo "test3";
 			echo "";
 		}
 		else
 		{
-			$insert_pro = "insert into cart (p_id,ip_add) values ('$pro_id','$ip')";
+			// echo "test4";
 
+			$insert_pro = "insert into cart (p_id, ip_add, qty) values ('$pro_id','$ip', $number)";
+
+			// echo $insert_pro;
 			$run_pro = mysqli_query($con, $insert_pro);
 
 			echo "<script>window.open('index.php', '_self')</script>";
+			// echo "test5";
 		}
 	}
+	// echo "test6";
 }
 
 function total_items()
@@ -53,11 +70,7 @@ function total_items()
 
 		$ip = getIp();
 
-		$get_items = "select * from cart where ip_add = '$ip'";
-
-		$run_items = mysqli_query($con, $get_items);
-
-		$count_items = mysqli_num_rows($run_items);
+		$get_items = "select sum(qty) sum from cart where ip_add = '$ip'";
 	}
 	else
 	{
@@ -65,12 +78,12 @@ function total_items()
 
 		$ip = getIp();
 
-		$get_items = "select * from cart where ip_add = '$ip'";
-
-		$run_items = mysqli_query($con, $get_items);
-
-		$count_items = mysqli_num_rows($run_items);
+		$get_items = "select sum(qty) sum from cart where ip_add = '$ip'";
 	}
+
+	$run_items = mysqli_query($con, $get_items);
+	$row = mysqli_fetch_array($run_items);
+	$count_items = $row['sum'];
 	echo $count_items;
 }
 
@@ -82,33 +95,14 @@ function total_price()
 
 	$ip = getIp();
 
-	$sel_price = "select * from cart where ip_add = '$ip'";
+	$sel_price = "SELECT SUM(c.qty * p.product_price) sum
+					FROM cart c
+					LEFT JOIN products p ON c.p_id = p.product_id 
+					WHERE c.ip_add = '$ip'";
 
 	$run_price = mysqli_query($con, $sel_price);
-
-	while ($p_price = mysqli_fetch_array($run_price))
-	{
-		$pro_id = $p_price['p_id'];
-
-		$pro_price = "select * from products where product_id='$pro_id'"; 
-
-		// $result2 = mysqli_query($con, $pro_price) or die(mysqli_error()); // to detect a mistake
-
-		$run_pr_price = mysqli_query($con, $pro_price);
-
-		// printf("Error: %s\n", mysqli_error($con));
-
-		// print_r($run_price);
-
-		while ($pp_price = mysqli_fetch_array($run_pr_price))
-		{	
-			$product_price = array($pp_price['product_price']);
-			
-			$values = array_sum($product_price);
-			
-			$total += $values;	
-		}
-	}
+	$row = mysqli_fetch_array($run_price);
+	$total = $row['sum'];
 	echo "$" . $total;
 
 }
@@ -170,13 +164,16 @@ function getPro()
 				$pro_image = $row_pro['product_image'];
 
 				echo "
+				<form method='post' action='index.php?add_cart=$pro_id'>
 				<div id='single_product'>
 					<h3>$pro_title</h3>
 					<img src='admin_area/product_images/$pro_image' width='180' height='180' />
 					<p><b>Price: $ $pro_price </b></p>
 					<a href='details.php?pro_id=$pro_id' style='float:left'>Details</a>
-					<a href='index.php?add_cart=$pro_id'><button style='float:right'>Add to cart</button></a>
+					<input type='number' name='number' step='1' min='1' value='1' style='width: 30px; height: 10px;'>
+					<a><button style='float:right'>Add to cart</button></a>
 				</div>
+				</form>
 				";
 			}
 		}

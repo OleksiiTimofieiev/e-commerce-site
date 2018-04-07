@@ -126,13 +126,13 @@ body {background-color: skyblue;}
 .content_wrapper {
 	width: 1000px;
 	margin: auto;
-	background: pink;
+	background: skyblue;
 }
 
 #content_area {
 	width: 800px;
 	float: left;
-	background: pink;
+	background: skyblue;
 }
 
 #sidebar {

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
 <?php
-	session_start();
+	// session_start();
 	include("functions/functions.php");
 
 ?>
 
-<html>
+<html style="background-color: skyblue;">
 	<head>
 		<title>My Online Shop</title>
 		<link rel="stylesheet" href="styles/style.css" media="all" />
@@ -98,87 +98,59 @@
 								<th>Remove</th>
 								<th>Products</th>
 								<th>Quantity</th>
-								<th>Total Price</th>
+								<th>Price</th>
+								<th>Subtotal</th>
 							</tr>
 
-							<?php
-							$total = 0;
+				<?php
 
-							global $con;
+					$total = 0;
 
-							$ip = getIp();
+					global $con;
 
-							$sel_price = "select * from cart where ip_add = '$ip'";
+					$ip = getIp();
 
-							$run_price = mysqli_query($con, $sel_price);
+					$sel_price = "SELECT c.p_id, c.qty, p.product_title, p.product_price, c.qty * p.product_price as subtotal
+								FROM cart c
+								LEFT JOIN products p ON c.p_id = p.product_id
+								WHERE c.ip_add = '::1'";
 
-							while ($p_price = mysqli_fetch_array($run_price))
-							{
-								$pro_id = $p_price['p_id'];
+					$run_price = mysqli_query($con, $sel_price);
+					
+					
+					while ($row = mysqli_fetch_array($run_price))
+					{
+						
+						$qty = $row['qty'];
+						$product_title = $row['product_title'];
+						$product_price = $row['product_price'];
+						$subtotal = $row['subtotal'];
+						if ($_POST[$row['p_id']])
+						{
+							$sql = "delete from cart where p_id = ".$_POST[$row['p_id']];
+							echo  $sql;;
+							mysqli_query($con, $sql);
+							echo "<script>window.open('cart.php', '_self')</script>";
+							continue ;
+						}
+						
 
-								$pro_price = "select * from products where product_id='$pro_id'"; 
-
-								// $result2 = mysqli_query($con, $pro_price) or die(mysqli_error()); // to detect a mistake
-
-								$run_pr_price = mysqli_query($con, $pro_price);
-
-								// printf("Error: %s\n", mysqli_error($con));
-
-								// print_r($run_price);
-
-								while ($pp_price = mysqli_fetch_array($run_pr_price))
-								{	
-									$product_price = array($pp_price['product_price']);
-									$product_title = $pp_price['product_title'];
-									$product_image = $pp_price['product_image'];
-
-									$single_price = $pp_price['product_price'];
-
-									
-									$values = array_sum($product_price);
-									
-									$total += $values;	
+						echo "<tr align='center'><td><form action='cart.php' method='post'><button type='submit' name='".$row['p_id']."' value='".$row['p_id']."'>X</button></form></td>";
+						echo "<td>".$product_title."</td>";
+						echo "<td>".$qty."</td>";
+						echo "<td>".$product_price."</td>";
+						echo "<td>".$subtotal."</td></tr>";
+					}
+				?>
+								
+								
 							
-							// echo "$" . $total;
-
-							?>
-							<tr align="center">
-								<td><input type="checkbox" name="remove[]" value="<?php echo $pro_id; ?>"></td>
-								<td><?php echo $product_title; ?><br>
-								<img src="admin_area/product_images/ <?php echo $product_image ?>" width="60" height="60" />
-								</td>
-								<td><input type="text" size="4" name="qty" value="<?php echo $_SESSION['qty']; ?>"></td>
-								<?php
-								// global $con;
-								if (isset($_POST['update_cart']))
-								{
-									$qty = $_POST['qty'];
-
-									// echo $qty;
-
-									$update_qty = "update cart set qty='$qty'";
-
-									$run_qty = mysqli_query($con, $update_qty);
-
-									$_SESSION['qty'] = $qty;
-
-									$total = $total * $qty;
-
-									// echo $total;
-								}
-
-
-								?>
-								<td><?php echo "$" . $single_price; ?></td>
-							</tr>
-
-							<?php } } ?>
-							<tr align="right">
-								<td colspan="4"><b>Sub total: </b></td>
-								<td><?php echo "$" . $total;?></td>
-							</tr>
-							<tr align="center">
-								<td colspan="2"><input type="submit" name="update_cart" value="Update_cart"></td>
+							<!-- <tr align=""> -->
+								<!-- <td colspan="4"><b>Sub total: </b></td> -->
+								<!-- <td><?php /*echo "$" . $total;*/?></td> -->
+							<!-- </tr> -->
+							<tr float="right">
+								<!-- <td colspan="2"><input type="submit" name="update_cart" value="Update_cart"></td> -->
 								<td><input type="submit" name="continue" value="continue_shopping"></td>
 								<td><button><a href="checkout.php" style="text-decoration: none; color: black;">Checkout</a></button></td>
 							</tr>
@@ -219,10 +191,7 @@
 			</div>
 		</div>
 
-	<div id="footer">
-		<h2 style="text-align: center; padding-top: 30px;">&copy; 2018 by otimofie</h2>
-	</div>
-	</div>
+
 
 
 

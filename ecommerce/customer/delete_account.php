@@ -6,10 +6,6 @@
 	<br><br>
 	<input type="submit" name="yes" value="yes, i want"  style="float: left;">
 	<input type="submit" name="no" value="no, i was joking" style="float: right;">
-
-
-
-
 </form>
 
 <?php

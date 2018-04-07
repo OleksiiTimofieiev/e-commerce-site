@@ -103,6 +103,7 @@ body {background-color: skyblue;}
 	text-align: center;
 	marker-left: 30px;
 	margin-bottom: 10px; 
+/*	background-color: pink;*/
 }
 
 #single_product {
@@ -126,13 +127,13 @@ body {background-color: skyblue;}
 .content_wrapper {
 	width: 1000px;
 	margin: auto;
-	background: pink;
+	background: skyblue;
 }
 
 #content_area {
 	width: 800px;
 	float: right;
-	background: pink;
+	background: skyblue;
 }
 
 #sidebar {
@@ -141,14 +142,4 @@ body {background-color: skyblue;}
 	float: left;
 }
 
-#footer {
-	/*top: 737px;*
-	/*left: 220px;*/
-	/*position: absolute;*/
-	width: 100%;
-	/*margin-left: 0px;*/
-	height: 100px;
-	display: inline-block;
-	background: green;
-	/*clear: both;*/
-}
+/**/

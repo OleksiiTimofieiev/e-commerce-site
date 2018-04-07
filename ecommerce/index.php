@@ -90,7 +90,6 @@
 					<?php getPro(); ?>
 					<?php getCatPro(); ?>
 					<?php getBrandPro(); ?>
-
 				</div>
 			</div>
 		</div>

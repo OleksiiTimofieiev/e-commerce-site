@@ -2,10 +2,10 @@
 -- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 07, 2018 at 06:30 PM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.3
+-- Host: localhost:3306
+-- Generation Time: Apr 07, 2018 at 02:15 PM
+-- Server version: 5.7.21
+-- PHP Version: 7.1.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -75,18 +75,16 @@ INSERT INTO `brands` (`brand_id`, `brand_title`) VALUES
 CREATE TABLE `cart` (
   `p_id` int(10) NOT NULL,
   `ip_add` varchar(255) NOT NULL,
-  `qty` int(10) NOT NULL
+  `qty` int(10) NOT NULL,
+  `cart_order` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `cart`
 --
 
-INSERT INTO `cart` (`p_id`, `ip_add`, `qty`) VALUES
-(8, '::1', 0),
-(9, '::1', 0),
-(13, '::1', 0),
-(14, '::1', 0);
+INSERT INTO `cart` (`p_id`, `ip_add`, `qty`, `cart_order`) VALUES
+(9, '::1', 4, '2018-04-07 20:45:47');
 
 -- --------------------------------------------------------
 
@@ -136,8 +134,8 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`customer_id`, `customer_ip`, `customer_name`, `customer_email`, `customer_pass`, `customer_country`, `customer_city`, `customer_contact`, `customer_address`, `customer_image`) VALUES
-(5, '::1', '1', '1', '', 'Select a country', '', '', '', ''),
-(6, '::1', '1', '1', '', 'Select a country', '', '', '', '');
+(8, '::1', '7', '123', '', 'Afganistan', 'Kabul', '', '', ''),
+(9, '::1', '1', '1', '', 'Select a country', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -165,6 +163,27 @@ INSERT INTO `products` (`product_id`, `product_cat`, `product_brand`, `product_t
 (9, 3, 6, 'htc mobile', 123, 'blablabla', 'htc.jpg', 'HTC'),
 (13, 3, 1, 'HTC very cool mobile', 545, 'sdfsdfsdfsdf', 'htc.jpg', 'HTC'),
 (14, 3, 1, 'HTC very cool mobile', 545, 'sdfsdfsdfsdf', 'htc.jpg', 'HTC');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `test`
+-- (See below for the actual view)
+--
+CREATE TABLE `test` (
+`ip` varchar(255)
+,`dt` date
+,`name` varchar(255)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `test`
+--
+DROP TABLE IF EXISTS `test`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `test`  AS  select `c`.`ip_add` AS `ip`,cast(`c`.`cart_order` as date) AS `dt`,`p`.`product_title` AS `name` from (`cart` `c` left join `products` `p` on((`c`.`p_id` = `p`.`product_id`))) order by cast(`c`.`cart_order` as date) desc,`c`.`ip_add` ;
 
 --
 -- Indexes for dumped tables
@@ -226,7 +245,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `customer_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `products`
