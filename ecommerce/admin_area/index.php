@@ -1,3 +1,18 @@
+<?php
+	session_start();
+
+	if(!isset($_SESSION['user_email'])) //if the person is not logged in;
+	{
+		echo "<script>window.open('login.php?not_admin=You are not Admin','_self')</script>";
+	}
+	else
+	{
+
+	
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,10 +33,10 @@
 				<a href="index.php?view_brands">View All Brands</a>
 				<a href="index.php?view_customers">View Customers</a>
 				<a href="index.php?view_orders">View Orders</a>
-				<a href="index.php?view_payments">View Payments</a>
 				<a href="logout.php">Admin Logout</a>
 			</div>
 		<div id="left">
+			<h2 style="color: red;text-align: center;"><?php echo @$_GET['logged_in']; ?></h2>
 			<?php
 				if (isset($_GET['insert_product']))
 				{
@@ -74,3 +89,5 @@
 	</div>
 </body>
 </html>
+
+<?php } ?>
