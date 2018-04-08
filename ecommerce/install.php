@@ -43,7 +43,7 @@
 </style>
 </head>
 <body>
-	<form method="get" action="instal.php">
+	<form method="get" action="install.php">
 		<h3>Input installation data</h3>
 		<input type="text" placeholder="localhost" readonly=""><br>
 		<input type="text" placeholder="root" readonly=""><br>

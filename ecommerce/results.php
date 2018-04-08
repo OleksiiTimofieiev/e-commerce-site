@@ -24,7 +24,7 @@
 				<li><a href="index.php">Home</a></li>
 				<li><a href="all_products.php">All products</a></li>
 				<li><a href="customer/my_account.php">My account</a></li>
-				<li><a href="#">Sign up</a></li>
+				<!-- <li><a href="#">Sign up</a></li> -->
 				<li><a href="#">Shopping cart</a></li>
 				<li><a href="#">Contact Us</a></li>
 				<!-- <li><a href="admin_area/insert_product.php">Prod New</a></li>	 -->
@@ -58,13 +58,7 @@
 			<div id="content_area">
 				<div id="shopping_cart">
 					<span style="float: right; font-size: 18px; padding: 5px; line-height: 45px;">
-
-						Welcome to the evil hindustyle site. 
-						<b style="color: yellow;">Shopping Cart</b>
-						Total items: Total price:
 						<a href="cart.php" style="color: yellow;">Go to Cart</a>
-
-
 					</span>
 				</div>
 				

@@ -27,8 +27,8 @@
 				<li><a href="all_products.php">All products</a></li>
 				<li><a href="customer/my_account.php">My account</a></li>
 				<!-- <li><a href="checkout.php">Sign up</a></li> -->
-				<li><a href="#">Shopping cart</a></li>
-				<li><a href="#">Contact Us</a></li>
+				<li><a href="cart.php">Shopping cart</a></li>
+				<li><a href="https://profile.intra.42.fr">Contact Us</a></li>
 				<!-- <li><a href="admin_area/insert_product.php">Prod New</a></li>	 -->
 			</ul>
 			<div id="form">
