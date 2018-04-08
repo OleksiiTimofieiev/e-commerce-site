@@ -16,7 +16,7 @@
 		<!-- header start here -->
 		<div class="header_wrapper">
 			<a href="index.php"><img id="logo" src="images/logo.gif" /></a>
-			<img id="banner" src="ad_banner.gif" alt="What the fuck is happening here ?" />
+			<img id="banner" src="images/ad_banner.gif" alt="What the fuck is happening here ?" />
 		</div>
 		<!-- navigation bar starts here -->
 		<div class="menubar">
@@ -24,8 +24,8 @@
 				<li><a href="index.php">Home</a></li>
 				<li><a href="all_products.php">All products</a></li>
 				<li><a href="customer/my_account.php">My account</a></li>
-				<li><a href="#">Sign up</a></li>
-				<li><a href="#">Shopping cart</a></li>
+				<!-- <li><a href="checkout.php">Sign up</a></li> -->
+				<li><a href="cart.php">Shopping cart</a></li>
 				<li><a href="#">Contact Us</a></li>
 				<!-- <li><a href="admin_area/insert_product.php">Prod New</a></li>	 -->
 			</ul>
@@ -59,9 +59,9 @@
 				<div id="shopping_cart">
 					<span style="float: right; font-size: 18px; padding: 5px; line-height: 45px;">
 
-						Welcome to the evil hindustyle site. 
-						<b style="color: yellow;">Shopping Cart</b>
-						Total items: Total price:
+						<!-- Welcome to the evil hindustyle site.  -->
+						<!-- <b style="color: yellow;">Shopping Cart</b> -->
+						<!-- Total items: <?php total_items(); ?> Total price: <?php total_price(); ?> -->
 						<a href="cart.php" style="color: yellow;">Go to Cart</a>
 
 
@@ -89,7 +89,6 @@
 							<img src='admin_area/product_images/$pro_image' width='180' height='180' />
 							<p><b>Price: $ $pro_price </b></p>
 							<a href='details.php?pro_id=$pro_id' style='float:left'>Details</a>
-							<a href='index.php?pro_id=$pro_id'><button style='float:right'>Add to cart</button></a>
 						</div>
 						";
 					}
@@ -99,10 +98,5 @@
 			</div>
 		</div>
 	</div>
-
-	<div id="footer">
-		<h2 style="text-align: center; padding-top: 30px;">&copy; 2018 by otimofie</h2>
-	</div>
-
 </body>
 </html>

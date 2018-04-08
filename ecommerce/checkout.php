@@ -18,7 +18,7 @@
 		<!-- header start here -->
 		<div class="header_wrapper">
 			<a href="index.php"><img id="logo" src="images/logo.gif" /></a>
-			<img id="banner" src="ad_banner.gif" alt="What the fuck is happening here ?" />
+			<img id="banner" src="images/ad_banner.gif" alt="What the fuck is happening here ?" />
 		</div>
 		<!-- navigation bar starts here -->
 		<div class="menubar">
@@ -27,7 +27,7 @@
 				<li><a href="all_products.php">All products</a></li>
 				<li><a href="customer/my_account.php">My account</a></li>
 				<li><a href="#">Sign up</a></li>
-				<li><a href="#">Shopping cart</a></li>
+				<li><a href="cart.php">Shopping cart</a></li>
 				<li><a href="#">Contact Us</a></li>
 				<!-- <li><a href="admin_area/insert_product.php">Prod New</a></li>	 -->
 			</ul>
@@ -95,9 +95,6 @@
 			</div>
 		</div>
 
-	<div id="footer">
-		<h2 style="text-align: center; padding-top: 30px;">&copy; 2018 by otimofie</h2>
-	</div>
 	</div>
 
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 07, 2018 at 02:15 PM
+-- Generation Time: Apr 08, 2018 at 02:43 AM
 -- Server version: 5.7.21
 -- PHP Version: 7.1.16
 
@@ -79,13 +79,6 @@ CREATE TABLE `cart` (
   `cart_order` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`p_id`, `ip_add`, `qty`, `cart_order`) VALUES
-(9, '::1', 4, '2018-04-07 20:45:47');
-
 -- --------------------------------------------------------
 
 --
@@ -129,14 +122,6 @@ CREATE TABLE `customers` (
   `customer_image` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `customers`
---
-
-INSERT INTO `customers` (`customer_id`, `customer_ip`, `customer_name`, `customer_email`, `customer_pass`, `customer_country`, `customer_city`, `customer_contact`, `customer_address`, `customer_image`) VALUES
-(8, '::1', '7', '123', '', 'Afganistan', 'Kabul', '', '', ''),
-(9, '::1', '1', '1', '', 'Select a country', '', '', '', '');
-
 -- --------------------------------------------------------
 
 --
@@ -159,10 +144,12 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_cat`, `product_brand`, `product_title`, `product_price`, `product_desc`, `product_image`, `product_keywords`) VALUES
-(8, 2, 4, 'samsung camera 2', 456, 'sdfsdf', 'samscam2.jpg', 'samsung, camera'),
-(9, 3, 6, 'htc mobile', 123, 'blablabla', 'htc.jpg', 'HTC'),
-(13, 3, 1, 'HTC very cool mobile', 545, 'sdfsdfsdfsdf', 'htc.jpg', 'HTC'),
-(14, 3, 1, 'HTC very cool mobile', 545, 'sdfsdfsdfsdf', 'htc.jpg', 'HTC');
+(8, 2, 4, 'Samsung Camera', 456, 'sdfsdf', 'sams kamera1.jpg', 'samsung, camera'),
+(15, 2, 4, 'Samsung Camera 2', 132, 'cool', 'samscam2.jpg', 'Samsung, camera'),
+(16, 1, 1, 'Laptop HP', 234, '234', 'hp.jpg', 'HP,Laptop'),
+(17, 1, 2, 'Dell Laptop', 77, 'Some cool', 'dell.jpg', 'Dell,laptop'),
+(18, 5, 7, 'iPad', 12, 'Simply iPad', 'iPad.jpg', 'Apple'),
+(19, 3, 7, 'HTC Mobile', 5, 'eerere', 'htc.jpg', 'Mobile');
 
 -- --------------------------------------------------------
 
@@ -245,13 +232,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `customer_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `product_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

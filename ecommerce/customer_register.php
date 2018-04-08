@@ -18,7 +18,7 @@
 		<!-- header start here -->
 		<div class="header_wrapper">
 			<a href="index.php"><img id="logo" src="images/logo.gif" /></a>
-			<img id="banner" src="ad_banner.gif" alt="What the fuck is happening here ?" />
+			<img id="banner" src="images/ad_banner.gif" alt="What the fuck is happening here ?" />
 		</div>
 		<!-- navigation bar starts here -->
 		<div class="menubar">
@@ -134,12 +134,7 @@
 				</div>
 			</div>
 		</div>
-
-	<div id="footer">
-		<h2 style="text-align: center; padding-top: 30px;">&copy; 2018 by otimofie</h2>
 	</div>
-	</div>
-
 </body>
 </html>
 
@@ -174,7 +169,7 @@
 			$_SESSION['customer_email'] = $c_email;
 
 			echo "<script>alert('Account has been created successfully')</script>";
-			echo "<script>window.open('customer_account.php', '_self')</script>";
+			echo "<script>window.open('customer/my_account.php', '_self')</script>";
 		}
 		else
 		{

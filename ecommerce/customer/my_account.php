@@ -17,21 +17,21 @@
 		<!-- header start here -->
 		<div class="header_wrapper">
 			<a href="../index.php"><img id="logo" src="images/logo.gif" /></a>
-			<img id="banner" src="ad_banner.gif" alt="What the fuck is happening here ?" />
+			<img id="banner" src="images/ad_banner.gif" alt="What the fuck is happening here ?" />
 		</div>
 		<!-- navigation bar starts here -->
 		<div class="menubar">
 			<ul id="menu">
-				<li><a href="index.php">Home</a></li>
-				<li><a href="all_products.php">All products</a></li>
-				<li><a href="customer/my_account.php">My account</a></li>
-				<li><a href="#">Sign up</a></li>
-				<li><a href="#">Shopping cart</a></li>
+				<li><a href="../index.php">Home</a></li>
+				<li><a href="../all_products.php">All products</a></li>
+				<li><a href="my_account.php">My account</a></li>
+				<!-- <li><a href="../checkout.php">Sign up</a></li> -->
+				<li><a href="../cart.php">Shopping cart</a></li>
 				<li><a href="#">Contact Us</a></li>
 				<!-- <li><a href="admin_area/insert_product.php">Prod New</a></li>	 -->
 			</ul>
 			<div id="form">
-				<form method="get" action="results.php" enctype="multipart/form-data">
+				<form method="get" action="../results.php" enctype="multipart/form-data">
 					<input type="text" name="user_query" placeholder="Search a product">
 					<input type="submit" name="search" value="Search">
 				</form>
@@ -73,7 +73,7 @@
 			<div id="content_area">
 				
 				<div id = "products_box">
-					<?php
+<!-- 					<?php
 						if (!isset($_GET['my_orders'])) 
 						{
 							if (!isset($_GET['edit_account'])) 
@@ -88,7 +88,7 @@
 								}
 							}
 						}
-					?>
+					?> -->
 					<?php
 						if(isset($_GET['edit_account']))
 						{
@@ -100,42 +100,37 @@
 
 				<div id="shopping_cart">
 					<span style="float: right; font-size: 15px; padding: 5px; line-height: 45px;">
-						<?php
+			<!-- 			<?php
 						if (isset($_SESSION['customer_email']))
 						{
-							echo "<b>Welcome </b>" . $_SESSION['customer_email'];
+							echo "<b>Welcome  </b>" . $_SESSION['customer_email'];
 						}
 						
 
-						?>
+						?> -->
 						
 						<?php
 							if (!isset($_SESSION['customer_email']))
 							{
-								echo "<a href='checkout.php' style='color: orange;'>Login</a>";
+								echo "<a href='../checkout.php' style='color: orange;'>Login</a>";
 							}
 							else
 							{
 								echo "<a href='logout.php' style='color: orange;'>Logout</a>";;
 							}
 						?>
-						<<?php 
+						<?php 
 						if (isset($_GET['delete_account']))
 						{
 							include("delete_account.php");
 						}
-
-
-						 ?>
+						?>
 					</span>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div id="footer">
-		<h2 style="text-align: center; padding-top: 30px;">&copy; 2018 by otimofie</h2>
-	</div>
 	</div>
 
 
